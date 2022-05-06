@@ -1,0 +1,265 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> re SEMI
+Rule 2     re -> re PLUS term
+Rule 3     re -> term
+Rule 4     term -> term factor
+Rule 5     term -> factor
+Rule 6     factor -> factor STAR
+Rule 7     factor -> basement
+Rule 8     basement -> LETTER
+Rule 9     basement -> EPSILON
+Rule 10    basement -> LPAREN re RPAREN
+
+Terminals, with rules where they appear
+
+EPSILON              : 9
+LETTER               : 8
+LPAREN               : 10
+PLUS                 : 2
+RPAREN               : 10
+SEMI                 : 1
+STAR                 : 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+basement             : 7
+factor               : 4 5 6
+re                   : 1 2 10
+start                : 0
+term                 : 2 3 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . re SEMI
+    (2) re -> . re PLUS term
+    (3) re -> . term
+    (4) term -> . term factor
+    (5) term -> . factor
+    (6) factor -> . factor STAR
+    (7) factor -> . basement
+    (8) basement -> . LETTER
+    (9) basement -> . EPSILON
+    (10) basement -> . LPAREN re RPAREN
+
+    LETTER          shift and go to state 6
+    EPSILON         shift and go to state 7
+    LPAREN          shift and go to state 8
+
+    start                          shift and go to state 1
+    re                             shift and go to state 2
+    term                           shift and go to state 3
+    factor                         shift and go to state 4
+    basement                       shift and go to state 5
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> re . SEMI
+    (2) re -> re . PLUS term
+
+    SEMI            shift and go to state 9
+    PLUS            shift and go to state 10
+
+
+state 3
+
+    (3) re -> term .
+    (4) term -> term . factor
+    (6) factor -> . factor STAR
+    (7) factor -> . basement
+    (8) basement -> . LETTER
+    (9) basement -> . EPSILON
+    (10) basement -> . LPAREN re RPAREN
+
+    SEMI            reduce using rule 3 (re -> term .)
+    PLUS            reduce using rule 3 (re -> term .)
+    RPAREN          reduce using rule 3 (re -> term .)
+    LETTER          shift and go to state 6
+    EPSILON         shift and go to state 7
+    LPAREN          shift and go to state 8
+
+    factor                         shift and go to state 11
+    basement                       shift and go to state 5
+
+state 4
+
+    (5) term -> factor .
+    (6) factor -> factor . STAR
+
+    LETTER          reduce using rule 5 (term -> factor .)
+    EPSILON         reduce using rule 5 (term -> factor .)
+    LPAREN          reduce using rule 5 (term -> factor .)
+    SEMI            reduce using rule 5 (term -> factor .)
+    PLUS            reduce using rule 5 (term -> factor .)
+    RPAREN          reduce using rule 5 (term -> factor .)
+    STAR            shift and go to state 12
+
+
+state 5
+
+    (7) factor -> basement .
+
+    STAR            reduce using rule 7 (factor -> basement .)
+    LETTER          reduce using rule 7 (factor -> basement .)
+    EPSILON         reduce using rule 7 (factor -> basement .)
+    LPAREN          reduce using rule 7 (factor -> basement .)
+    SEMI            reduce using rule 7 (factor -> basement .)
+    PLUS            reduce using rule 7 (factor -> basement .)
+    RPAREN          reduce using rule 7 (factor -> basement .)
+
+
+state 6
+
+    (8) basement -> LETTER .
+
+    STAR            reduce using rule 8 (basement -> LETTER .)
+    LETTER          reduce using rule 8 (basement -> LETTER .)
+    EPSILON         reduce using rule 8 (basement -> LETTER .)
+    LPAREN          reduce using rule 8 (basement -> LETTER .)
+    SEMI            reduce using rule 8 (basement -> LETTER .)
+    PLUS            reduce using rule 8 (basement -> LETTER .)
+    RPAREN          reduce using rule 8 (basement -> LETTER .)
+
+
+state 7
+
+    (9) basement -> EPSILON .
+
+    STAR            reduce using rule 9 (basement -> EPSILON .)
+    LETTER          reduce using rule 9 (basement -> EPSILON .)
+    EPSILON         reduce using rule 9 (basement -> EPSILON .)
+    LPAREN          reduce using rule 9 (basement -> EPSILON .)
+    SEMI            reduce using rule 9 (basement -> EPSILON .)
+    PLUS            reduce using rule 9 (basement -> EPSILON .)
+    RPAREN          reduce using rule 9 (basement -> EPSILON .)
+
+
+state 8
+
+    (10) basement -> LPAREN . re RPAREN
+    (2) re -> . re PLUS term
+    (3) re -> . term
+    (4) term -> . term factor
+    (5) term -> . factor
+    (6) factor -> . factor STAR
+    (7) factor -> . basement
+    (8) basement -> . LETTER
+    (9) basement -> . EPSILON
+    (10) basement -> . LPAREN re RPAREN
+
+    LETTER          shift and go to state 6
+    EPSILON         shift and go to state 7
+    LPAREN          shift and go to state 8
+
+    re                             shift and go to state 13
+    term                           shift and go to state 3
+    factor                         shift and go to state 4
+    basement                       shift and go to state 5
+
+state 9
+
+    (1) start -> re SEMI .
+
+    $end            reduce using rule 1 (start -> re SEMI .)
+
+
+state 10
+
+    (2) re -> re PLUS . term
+    (4) term -> . term factor
+    (5) term -> . factor
+    (6) factor -> . factor STAR
+    (7) factor -> . basement
+    (8) basement -> . LETTER
+    (9) basement -> . EPSILON
+    (10) basement -> . LPAREN re RPAREN
+
+    LETTER          shift and go to state 6
+    EPSILON         shift and go to state 7
+    LPAREN          shift and go to state 8
+
+    term                           shift and go to state 14
+    factor                         shift and go to state 4
+    basement                       shift and go to state 5
+
+state 11
+
+    (4) term -> term factor .
+    (6) factor -> factor . STAR
+
+    LETTER          reduce using rule 4 (term -> term factor .)
+    EPSILON         reduce using rule 4 (term -> term factor .)
+    LPAREN          reduce using rule 4 (term -> term factor .)
+    SEMI            reduce using rule 4 (term -> term factor .)
+    PLUS            reduce using rule 4 (term -> term factor .)
+    RPAREN          reduce using rule 4 (term -> term factor .)
+    STAR            shift and go to state 12
+
+
+state 12
+
+    (6) factor -> factor STAR .
+
+    STAR            reduce using rule 6 (factor -> factor STAR .)
+    LETTER          reduce using rule 6 (factor -> factor STAR .)
+    EPSILON         reduce using rule 6 (factor -> factor STAR .)
+    LPAREN          reduce using rule 6 (factor -> factor STAR .)
+    SEMI            reduce using rule 6 (factor -> factor STAR .)
+    PLUS            reduce using rule 6 (factor -> factor STAR .)
+    RPAREN          reduce using rule 6 (factor -> factor STAR .)
+
+
+state 13
+
+    (10) basement -> LPAREN re . RPAREN
+    (2) re -> re . PLUS term
+
+    RPAREN          shift and go to state 15
+    PLUS            shift and go to state 10
+
+
+state 14
+
+    (2) re -> re PLUS term .
+    (4) term -> term . factor
+    (6) factor -> . factor STAR
+    (7) factor -> . basement
+    (8) basement -> . LETTER
+    (9) basement -> . EPSILON
+    (10) basement -> . LPAREN re RPAREN
+
+    SEMI            reduce using rule 2 (re -> re PLUS term .)
+    PLUS            reduce using rule 2 (re -> re PLUS term .)
+    RPAREN          reduce using rule 2 (re -> re PLUS term .)
+    LETTER          shift and go to state 6
+    EPSILON         shift and go to state 7
+    LPAREN          shift and go to state 8
+
+    factor                         shift and go to state 11
+    basement                       shift and go to state 5
+
+state 15
+
+    (10) basement -> LPAREN re RPAREN .
+
+    STAR            reduce using rule 10 (basement -> LPAREN re RPAREN .)
+    LETTER          reduce using rule 10 (basement -> LPAREN re RPAREN .)
+    EPSILON         reduce using rule 10 (basement -> LPAREN re RPAREN .)
+    LPAREN          reduce using rule 10 (basement -> LPAREN re RPAREN .)
+    SEMI            reduce using rule 10 (basement -> LPAREN re RPAREN .)
+    PLUS            reduce using rule 10 (basement -> LPAREN re RPAREN .)
+    RPAREN          reduce using rule 10 (basement -> LPAREN re RPAREN .)
+
